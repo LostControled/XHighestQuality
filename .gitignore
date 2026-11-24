@@ -1,0 +1,8 @@
+.DS_Store
+*.o
+*.dSYM/
+.modulecache*/
+tests/TestHarness
+tests/XHighestQuality_macos.dylib
+*.zip
+!dist/*.zip
