@@ -3,7 +3,7 @@
 让 X（Twitter）iOS 版每次播放视频时默认选最高画质（优先 1080p），而不是先走自动 / 低码率。
 
 - **适用版本**：X 12.46（`com.atebits.Tweetie2`）
-- **系统要求**：iOS 15+，arm64
+- **系统要求**：iOS 15+，arm64（已在 iOS 16.3.1 真机验证可用）
 - **注入方式**：TrollFools / TrollStore 注入 dylib（已 ad-hoc 签名）
 - **下载**：[XHighestQuality-1.0.0.zip](https://github.com/LostControled/XHighestQuality/raw/main/dist/XHighestQuality-1.0.0.zip)（含 dylib 与本说明）
 
@@ -46,6 +46,8 @@ X 的播放链路里有多层画质限制，这个插件同时处理：
 
 然后随便打开一个视频，点「质量」，确认默认选中 1080p；理论上不会再先糊后清。
 
+真机实测（iOS 16.3.1）：上述五条日志齐全，视频默认选中 1080p，播放中不再先糊后清。
+
 ## 从源码构建
 
 需要 Xcode 的 iPhoneOS SDK：
@@ -85,7 +87,7 @@ cd XHighestQuality
 
 - 优先 1080p；没有 1080p 时选不超过 1080p 的最高档；若连 720p 都没有，则选可用的最高档。
 - 不会改「数据节省模式」的 `T1VideoQualitySettings`，那个是省流量开关，不是播放器里的质量菜单。
-- 目前没有在 iOS 真机上跑过（开发机只有 macOS 和 IPA），逻辑基于 X 12.46 的类 / 方法 / 字符串逆向；macOS 假类测试已通过。若某个版本改了类名，日志会显示哪一组 hook 没装完，可按日志继续定位。
+- 已在 iOS 16.3.1 上真机验证可用；其他系统版本未逐一验证。逻辑基于 X 12.46 的类 / 方法 / 字符串逆向，macOS 假类测试已通过。若某个版本改了类名，日志会显示哪一组 hook 没装完，可按日志继续定位。
 - 卸载：在 TrollFools 里移除该 dylib，重启 X。
 
 ## 免责声明
